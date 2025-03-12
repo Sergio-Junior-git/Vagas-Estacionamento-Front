@@ -1,0 +1,13 @@
+.butaovip {
+   left: 7px;
+}
+
+
+.divi {
+        justify-content: center;
+        align-items: center;
+        height: vh;
+        margin: 0;
+        flex-direction: column;
+        text-align: center;
+}

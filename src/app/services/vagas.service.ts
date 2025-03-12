@@ -24,5 +24,9 @@ getAll(): Observable<ParkingSpot[]> {
  return this.http.get<ParkingSpot[]>(this.apiUrl)
 }
 
+save(record: ParkingSpot) {
+ return this.http.post<ParkingSpot>(this.apiUrl, record);
+}
+
 
 }

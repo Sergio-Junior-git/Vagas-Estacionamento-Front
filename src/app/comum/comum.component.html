@@ -1,24 +1,13 @@
 <div class="container mt-4">
     <h2 class="text-center">Gerenciamento de Estacionamento</h2>
   
-    <!-- Filtro de Status -->
-    <div class="mb-3">
-      <label for="filter" class="form-label">Filtrar por Status:</label>
-      <select id="filter" class="form-select" [(ngModel)]="filterStatus">
-        <option value="Todos">Todos</option>
-        <option value="Disponível">Disponível</option>
-        <option value="Reservada">Reservada</option>
-        <option value="Ocupada">Ocupada</option>
-      </select>
-    </div>
-  
     <!-- Grid de Vagas -->
     <div class="row">
       <div class="col-md-4 mb-3" *ngFor="let spot of getFilteredSpots()">
         <div class="card text-center p-3">
           <h5 class="card-title">Vaga {{ spot.numero }}</h5>
           <p>Tipo: {{ spot.tipo }}</p>
-          <p>Valor/hora: R$ {{ spot.valorPorHora }}</p>
+          <p>Valor/hora: R$ {{ spot.valorporhora }}</p>
           <p [ngClass]="{
               'text-success': spot.estatos === 'Disponivel',
               'text-warning': spot.estatos === 'Reservada',

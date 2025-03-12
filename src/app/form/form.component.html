@@ -1,1 +1,38 @@
-<p>form funciona</p>
+<div>
+    <mat-card appearance="outlined">
+        <mat-toolbar>
+            Nova Vaga
+        </mat-toolbar>
+            <form [formGroup]="form" class="formulario">
+    
+                <mat-form-field>
+                  <input matInput placeholder="Número Da Vaga" formControlName="numero">
+                </mat-form-field>
+          
+                <mat-form-field>
+                  <mat-select placeholder="Tipo De Vaga" formControlName="tipo">
+                    <mat-option value="Vip">VIP</mat-option>
+                    <mat-option value="Comum">Comum</mat-option>
+                  </mat-select>
+                </mat-form-field>
+          
+                <mat-form-field>
+                  <input matInput placeholder="Valor Por Hora" formControlName="valorporhora">
+                </mat-form-field>
+          
+                <mat-form-field>
+                  <mat-select placeholder="Status da Vaga" formControlName="estatos">
+                    <mat-option value="Disponivel">Disponível</mat-option>
+                    <mat-option value="Ocupada">Ocupada</mat-option>
+                  </mat-select>
+                </mat-form-field>
+          
+              </form>
+              <mat-card-actions class="botaodenovavaga">
+                <button mat-button (click)="onSubmit()">SALVAR</button>
+                <button mat-button (click)="onCancel()">CANCELAR</button>
+              </mat-card-actions>
+      </mat-card>
+      
+
+</div>

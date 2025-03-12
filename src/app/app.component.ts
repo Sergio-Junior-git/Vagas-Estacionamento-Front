@@ -31,4 +31,8 @@ export class AppComponent {
   onClick3() {
     this.router.navigate(['/new'])
   }
+
+  onClick4() {
+    this.router.navigate(['/inicio'])
+  }
 }
