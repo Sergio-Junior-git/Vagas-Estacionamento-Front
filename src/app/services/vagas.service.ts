@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ParkingSpot } from '../parking-spot';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,12 @@ export class VagasService {
 //  }
 
 getAll(): Observable<ParkingSpot[]> {
- return this.http.get<ParkingSpot[]>(this.apiUrl)
+ return this.http.get<ParkingSpot[]>(this.apiUrl).pipe(
+  catchError((error) => {
+    console.error('Erro ao buscar vagas:', error);
+    return throwError(() => new Error('Erro ao buscar vagas.'));
+  })
+);
 }
 
 save(record: ParkingSpot) {

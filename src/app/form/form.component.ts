@@ -26,7 +26,16 @@ import { Router } from '@angular/router';
 
   ],
   templateUrl: './form.component.html',
-  styleUrl: './form.component.css'
+  styleUrl: './form.component.css',
+  template: `
+  <form [formGroup]="formulario" (ngSubmit)="enviar()">
+    <input formControlName="nome" placeholder="Nome">
+    <span *ngIf="formulario.controls['nome'].invalid && formulario.controls['nome'].touched">
+      Nome obrigatório
+    </span>
+    <button type="submit">Enviar</button>
+  </form>
+ `
 })
 export class FormComponent implements OnInit {
 
@@ -39,10 +48,10 @@ export class FormComponent implements OnInit {
     private router: Router,
   ) {
     this.form = this.formbuilder.group({
-      numero: [null],
-      tipo: [null],
-      valorporhora: [null],
-      estatos: [null],
+      numero: [null, [Validators.required, Validators.pattern('^[0-9]+$')]],
+      tipo: [null,  Validators.required],
+      valorporhora: [null, [Validators.required, Validators.min(0)]],
+      status: [null , Validators.required],
     })
   }
 
@@ -53,6 +62,13 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.form.invalid) {
+      this._snackBar.open("Campos invalidos, por favor tente novamente", "", {
+        duration: 5000,
+      });
+      return; // Para evitar o envio do formulário inválido
+    }
+
     this.service.save(this.form.value).subscribe(result => console.log(result));
     this._snackBar.open("Vaga Adicionada", "", {
       duration: 5000,
@@ -62,6 +78,9 @@ export class FormComponent implements OnInit {
 
   onCancel() {
     this.router.navigate(['/inicio'])
+    this._snackBar.open("Vaga Não idicionada", "", {
+      duration: 5000,
+    });
   }
 
 }

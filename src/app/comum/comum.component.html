@@ -9,32 +9,32 @@
           <p>Tipo: {{ spot.tipo }}</p>
           <p>Valor/hora: R$ {{ spot.valorporhora }}</p>
           <p [ngClass]="{
-              'text-success': spot.estatos === 'Disponivel',
-              'text-warning': spot.estatos === 'Reservada',
-              'text-danger': spot.estatos === 'Ocupada'
+              'text-success': spot.status === 'Disponivel',
+              'text-warning': spot.status === 'Reservada',
+              'text-danger': spot.status === 'Ocupada'
             }">
-            <strong>{{ spot.estatos }}</strong>
+            <strong>{{ spot.status }}</strong>
           </p>
   
-          <button *ngIf="spot.estatos === 'Disponivel'"
+          <button *ngIf="spot.status === 'Disponivel'"
             class="btn btn-primary"
-            (click)="reserveSpot(spot.id)">
+            (click)="OnReserva()">
             Reservar
           </button>
   
-          <button *ngIf="spot.estatos === 'Reservada'"
+          <button *ngIf="spot.status === 'Reservada'"
             class="btn btn-secondary"
             (click)="releaseSpot(spot.id)">
             Liberar
           </button>
 
-          <button *ngIf="spot.estatos === 'Disponivel'"
+          <button *ngIf="spot.status === 'Disponivel'"
           class="btn btn-secondary"
           (click)="OcuparSpot(spot.id)">
           Ocupar
         </button>
 
-        <button *ngIf="spot.estatos === 'Ocupada'"
+        <button *ngIf="spot.status === 'Ocupada'"
         class="btn btn-secondary"
         (click)="DisponiSpot(spot.id)">
         Disponibilizar

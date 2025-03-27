@@ -3,5 +3,6 @@ export interface ParkingSpot {
   numero: string;
   tipo: string;
   valorporhora: string;
-  estatos: 'Disponivel' | 'Reservada' | 'Ocupada';
+  status: 'Disponivel' | 'Reservada' | 'Ocupada';
+  startTime?: Date;
 }
